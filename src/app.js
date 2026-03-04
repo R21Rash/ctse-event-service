@@ -10,7 +10,22 @@ const eventRoutes = require("./routes/eventRoutes");
 const app = express();
 
 // --- Security Middleware ---
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://cdnjs.cloudflare.com",
+        ],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"],
+        imgSrc: ["'self'", "data:", "https://validator.swagger.io"],
+      },
+    },
+  }),
+);
 app.use(cors());
 app.use(express.json({ limit: "10kb" }));
 
