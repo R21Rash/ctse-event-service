@@ -32,7 +32,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // --- Swagger API Docs ---
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api/events/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // --- Routes ---
 app.use("/api/events", eventRoutes);

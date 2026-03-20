@@ -71,9 +71,9 @@ describe("Event Service", () => {
     });
   });
 
-  describe("GET /api-docs", () => {
+  describe("GET /api/events/docs", () => {
     it("should serve Swagger docs", async () => {
-      const res = await request(app).get("/api-docs/").redirects(1);
+      const res = await request(app).get("/api/events/docs/").redirects(1);
       expect(res.statusCode).toBe(200);
     });
   });
