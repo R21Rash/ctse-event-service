@@ -14,6 +14,10 @@ const options = {
     },
     servers: [
       {
+        url: "http://ticket-go-alb-823936217.ap-southeast-1.elb.amazonaws.com",
+        description: "AWS ALB (Production)",
+      },
+      {
         url: "http://localhost:3001",
         description: "Local development server",
       },
