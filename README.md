@@ -15,7 +15,7 @@ This service manages events and integrates with the **Auth Service** for token v
 | `GET`  | `/api/events/:id` | Get event by ID           | No            |
 | `PUT`  | `/api/events/:id` | Update an event           | Yes (Bearer)  |
 | `GET`  | `/health`         | Health check              | No            |
-| `GET`  | `/api-docs`       | Swagger API documentation | No            |
+| `GET`  | `/api/events/docs`  | Swagger API documentation | No            |
 
 ## Inter-Service Communication
 
@@ -44,6 +44,13 @@ Auth Service URL is configured via the `AUTH_SERVICE_URL` environment variable.
 - **CI/CD**: GitHub Actions
 - **Cloud**: AWS (ECR + ECS Fargate)
 - **SAST**: Snyk
+
+## API Documentation (Swagger)
+
+The Swagger API documentation for all microservices is accessible via the AWS Application Load Balancer. 
+
+To view the Swagger UI for the Event Service, visit:
+**[`http://ticket-go-alb-823936217.ap-southeast-1.elb.amazonaws.com/api/events/docs`](http://ticket-go-alb-823936217.ap-southeast-1.elb.amazonaws.com/api/events/docs)**
 
 ## Getting Started
 
