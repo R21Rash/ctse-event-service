@@ -3,7 +3,12 @@ const { ObjectId } = require("mongodb");
 const { getDB } = require("../config/db");
 
 const isEventOwner = (event, userId) => {
-  if (!event || userId == null) return false;
+  if (!event) {
+    return false;
+  }
+  if (userId === null || userId === undefined) {
+    return false;
+  }
   const owner = event.createdBy;
   return String(owner) === String(userId);
 };
