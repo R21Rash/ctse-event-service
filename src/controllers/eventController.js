@@ -2,6 +2,12 @@ const { validationResult } = require("express-validator");
 const { ObjectId } = require("mongodb");
 const { getDB } = require("../config/db");
 
+const isEventOwner = (event, userId) => {
+  if (!event || userId == null) return false;
+  const owner = event.createdBy;
+  return String(owner) === String(userId);
+};
+
 const createEvent = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -99,6 +105,12 @@ const updateEvent = async (req, res) => {
       return res.status(404).json({ error: "Event not found" });
     }
 
+    if (!isEventOwner(existingEvent, req.user.userId)) {
+      return res
+        .status(403)
+        .json({ error: "Not authorized to update this event" });
+    }
+
     const { title, description, date, location, maxAttendees } = req.body;
 
     const updateData = {
@@ -129,4 +141,43 @@ const updateEvent = async (req, res) => {
   }
 };
 
-module.exports = { createEvent, listEvents, getEvent, updateEvent };
+const deleteEvent = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!ObjectId.isValid(id)) {
+      return res.status(400).json({ error: "Invalid event ID" });
+    }
+
+    const db = getDB();
+    const eventsCollection = db.collection("events");
+
+    const existingEvent = await eventsCollection.findOne({
+      _id: new ObjectId(id),
+    });
+    if (!existingEvent) {
+      return res.status(404).json({ error: "Event not found" });
+    }
+
+    if (!isEventOwner(existingEvent, req.user.userId)) {
+      return res
+        .status(403)
+        .json({ error: "Not authorized to delete this event" });
+    }
+
+    await eventsCollection.deleteOne({ _id: new ObjectId(id) });
+
+    res.json({ message: "Event deleted successfully" });
+  } catch (err) {
+    console.error("Delete event error:", err.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+module.exports = {
+  createEvent,
+  listEvents,
+  getEvent,
+  updateEvent,
+  deleteEvent,
+};

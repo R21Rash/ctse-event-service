@@ -170,4 +170,31 @@ router.get("/:id", eventController.getEvent);
  */
 router.put("/:id", authMiddleware.verifyToken, eventController.updateEvent);
 
+/**
+ * @swagger
+ * /api/events/{id}:
+ *   delete:
+ *     summary: Delete an event
+ *     tags: [Events]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Event ID
+ *     responses:
+ *       200:
+ *         description: Event deleted successfully
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Not authorized (not the event creator)
+ *       404:
+ *         description: Event not found
+ */
+router.delete("/:id", authMiddleware.verifyToken, eventController.deleteEvent);
+
 module.exports = router;
