@@ -14,7 +14,7 @@ This service manages events and integrates with the **Auth Service** for token v
 | `GET`  | `/api/events`     | List all events           | No            |
 | `GET`  | `/api/events/:id` | Get event by ID           | No            |
 | `PUT`  | `/api/events/:id` | Update an event           | Yes (Bearer)  |
-| `GET`  | `/health`         | Health check              | No            |
+| `GET`  | `/event/health`         | Health check              | No            |
 | `GET`  | `/api/events/docs`  | Swagger API documentation | No            |
 
 ## Inter-Service Communication

@@ -10,9 +10,9 @@ describe("Event Service", () => {
     });
   });
 
-  describe("GET /health", () => {
+  describe("GET /event/health", () => {
     it("should return health status", async () => {
-      const res = await request(app).get("/health");
+      const res = await request(app).get("/event/health");
       expect(res.statusCode).toBe(200);
       expect(res.body.status).toBe("ok");
       expect(res.body.service).toBe("event-service");
