@@ -37,8 +37,19 @@ app.use("/api/events/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // --- Routes ---
 app.use("/api/events", eventRoutes);
 
+/**
+ * @swagger
+ * /event/health:
+ *   get:
+ *     summary: Health Check
+ *     description: Returns the health status of the Event Service
+ *     tags: [Health]
+ *     responses:
+ *       200:
+ *         description: Service is healthy
+ */
 // Health check endpoint
-app.get("/health", (req, res) => {
+app.get("/event/health", (req, res) => {
   res.json({
     status: "ok",
     service: "event-service",
