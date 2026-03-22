@@ -1,5 +1,6 @@
 const swaggerJsdoc = require("swagger-jsdoc");
 
+// Swagger definition options for swagger-jsdoc
 const options = {
   definition: {
     openapi: "3.0.0",

@@ -8,14 +8,15 @@ This service manages events and integrates with the **Auth Service** for token v
 
 ### Endpoints
 
-| Method | Endpoint          | Description               | Auth Required |
-| ------ | ----------------- | ------------------------- | ------------- |
-| `POST` | `/api/events`     | Create a new event        | Yes (Bearer)  |
-| `GET`  | `/api/events`     | List all events           | No            |
-| `GET`  | `/api/events/:id` | Get event by ID           | No            |
-| `PUT`  | `/api/events/:id` | Update an event           | Yes (Bearer)  |
-| `GET`  | `/api/events/health` | Health check              | No            |
-| `GET`  | `/api/events/docs`  | Swagger API documentation | No            |
+| Method   | Endpoint             | Description                    | Auth Required |
+| -------- | -------------------- | ------------------------------ | ------------- |
+| `POST`   | `/api/events`        | Create a new event             | Yes (Bearer)  |
+| `GET`    | `/api/events`        | List all events                | No            |
+| `GET`    | `/api/events/:id`    | Get event by ID                | No            |
+| `PUT`    | `/api/events/:id`    | Update an event                | Yes (Bearer)  |
+| `DELETE` | `/api/events/:id`    | Delete an event (creator only) | Yes (Bearer)  |
+| `GET`    | `/api/events/health` | Health check                   | No            |
+| `GET`    | `/api/events/docs`   | Swagger API documentation      | No            |
 
 ## Inter-Service Communication
 
@@ -47,7 +48,7 @@ Auth Service URL is configured via the `AUTH_SERVICE_URL` environment variable.
 
 ## API Documentation (Swagger)
 
-The Swagger API documentation for all microservices is accessible via the AWS Application Load Balancer. 
+The Swagger API documentation for all microservices is accessible via the AWS Application Load Balancer.
 
 To view the Swagger UI for the Event Service, visit:
 **[`http://ticket-go-alb-823936217.ap-southeast-1.elb.amazonaws.com/api/events/docs`](http://ticket-go-alb-823936217.ap-southeast-1.elb.amazonaws.com/api/events/docs)**

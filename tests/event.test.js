@@ -71,6 +71,15 @@ describe("Event Service", () => {
     });
   });
 
+  describe("DELETE /api/events/:id", () => {
+    it("should reject delete without token", async () => {
+      const res = await request(app).delete(
+        "/api/events/507f1f77bcf86cd799439011",
+      );
+      expect(res.statusCode).toBe(401);
+    });
+  });
+
   describe("GET /api/events/docs", () => {
     it("should serve Swagger docs", async () => {
       const res = await request(app).get("/api/events/docs/").redirects(1);
