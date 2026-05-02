@@ -1,4 +1,4 @@
-# CTSE Event Service
+# CTSE Event Service!
 
 An event management microservice built with **Node.js**, **Express**, and **MongoDB**. Part of the CTSE Cloud Computing group project — Event Management System.
 
